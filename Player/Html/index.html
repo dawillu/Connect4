@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>connect4 by dawillu</title>
+    <link rel="stylesheet" href="../Styles/index_style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mdl">
+        <div class="circles">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+        </div>
+    </div>
+
+    <div id="wait">
+        <div id="loading" class="loading">
+            <div></div><div></div><div></div>
+        </div>
+        <div id="loading-text" class="loading-text">
+            Looking for another player...
+        </div>
+        <div class="box">    
+            <div class="mdl">    
+                <div id = "wait">
+                    <h1 class="title">
+                        Please enter your username
+                    </h1>
+                
+                    <div class="card">
+                        <div class="username">
+                            <label>Username</label>
+                            <input id="username" placeholder="BigBananaGamer89" type="text" maxlength="19">
+                            <span class="underline"></span>
+                        </div>
+                        <div>
+                            <button id="join" type="button" onclick="Search()">Play</button>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+    </div>
+
+
+
+    <div id="scoreboard">
+        <div id="player"></div>
+        <div id="vs">VS</div>
+        <div id="opponent"></div>
+    </div>
+
+    <div class="chat" id="chat">
+        <div class="chat-container" id="chat-container">
+
+        </div>
+        <input type="text" id="message" placeholder="message"/>
+    </div>
+    
+
+
+
+
+
+    <script src="../Scripts/CreateField.js"></script>
+    <script src="../Scripts/index_script.js"></script>
+</body>
+</html>

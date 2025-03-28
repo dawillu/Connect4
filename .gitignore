@@ -1,0 +1,34 @@
+# Compiled binary files
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+# Build artifacts
+*.cache
+*.ilk
+*.log
+*.suo
+*.user
+*.csproj.user
+*.vscode
+
+# Visual Studio specific
+.vs/
+TestResults/
+*.sln.ide
+
+# macOS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
