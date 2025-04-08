@@ -148,31 +148,43 @@ public class Play : WebSocketBehavior
         }
     }
 
-    bool Check(int row, int col , int roomId) {
+    bool Check(int row, int col, int roomId) {
+        string colorToMatch = _rooms[roomId].field[row, col];
+        if (colorToMatch == "") return false;
+        
+        // horizontal check
         int count_combo = 1;
-
-        // horizontal
-        for (int i = 0; i < cols - 1; i++) {
-            if (_rooms[roomId].field[row, i] != "") {
-                if (_rooms[roomId].field[row, i] == _rooms[roomId].field[row, i + 1]) {
-                    count_combo++;
-                    if (count_combo >= 4) return true;  // Check for a match
-                }
-                else count_combo = 1;   // We will count the original piece as a match
+        // check left
+        for (int i = col - 1; i >= 0; i--) {
+            if (_rooms[roomId].field[row, i] == colorToMatch) {
+                count_combo++;
+            } else {
+                break;
             }
         }
-        // vertical
-        for (int i = 0; i < rows - 1; i++) {
-            if (_rooms[roomId].field[i, col] != "") {
-                if (_rooms[roomId].field[i, col] == _rooms[roomId].field[i + 1, col]) {
-                    count_combo++;
-                    if (count_combo >= 4) return true;  // Check for a match
-                }
-                else count_combo = 1;   // We will count the original piece as a match
+        // check right
+        for (int i = col + 1; i < cols; i++) {
+            if (_rooms[roomId].field[row, i] == colorToMatch) {
+                count_combo++;
+            } else {
+                break;
             }
         }
+        if (count_combo >= 4) return true;
 
-        // diagonal
+        // vertical check
+        count_combo = 1;
+        // check down
+        for (int i = row + 1; i < rows; i++) {
+            if (_rooms[roomId].field[i, col] == colorToMatch) {
+                count_combo++;
+            } else {
+                break;
+            }
+        }
+        if (count_combo >= 4) return true;
+
+        // diagonal check is already working correctly
         return CompletesDiagonal(row, col, roomId);
     }
 
@@ -229,18 +241,6 @@ public class Play : WebSocketBehavior
             var col = pieceCol + i;
 
             // Make sure we stay within our board
-            if (row < _rooms[roomId].field.GetLowerBound(0) || col > _rooms[roomId].field.GetUpperBound(1)) { break; }
-
-            // Check for a match
-            if (_rooms[roomId].field[row, col] == colorToMatch)
-            {
-                matchingPieces++;
-                if (matchingPieces == 4) return true;
-            }
-            else { break; }
-        }
-
-        // Next check upper left
         for (int i = 1; i < 4; i++)
         {
             var row = pieceRow + i;
